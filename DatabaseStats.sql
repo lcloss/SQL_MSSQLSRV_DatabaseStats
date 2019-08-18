@@ -11,6 +11,5 @@ SELECT t.name AS TableName
   INNER JOIN sys.indexes i ON t.object_id = i.object_id
   INNER JOIN sys.partitions p ON i.object_id = p.object_id AND i.index_id = p.index_id
   INNER JOIN sys.allocation_units a ON p.partition_id = a.container_id
-  WHERE p.[Rows] > 200000
   GROUP BY t.name, i.object_id, i.index_id, i.name, p.[Rows]
   ORDER BY OBJECT_NAME(i.object_id)
